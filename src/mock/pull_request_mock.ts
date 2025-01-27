@@ -1,11 +1,10 @@
-import {PullRequestEvent} from '@octokit/webhooks-definitions/schema'
+import {PullRequestEvent} from '@octokit/webhooks-types'
 
+// @see https://github.com/octokit/webhooks/blob/master/payload-examples/api.github.com/pull_request/opened.payload.json
 export const pr: PullRequestEvent = {
   action: 'opened',
   number: 2,
   pull_request: {
-    auto_merge: null,
-    active_lock_reason: null,
     url: 'https://api.github.com/repos/Codertocat/Hello-World/pulls/2',
     id: 279147437,
     node_id: 'MDExOlB1bGxSZXF1ZXN0Mjc5MTQ3NDM3',
@@ -48,10 +47,69 @@ export const pr: PullRequestEvent = {
     merged_at: null,
     merge_commit_sha: null,
     assignee: null,
-    assignees: [],
-    requested_reviewers: [],
+    assignees: [
+      {
+        login: 'Codertocat',
+        id: 21031067,
+        node_id: 'MDQ6VXNlcjIxMDMxMDY3',
+        avatar_url: 'https://avatars1.githubusercontent.com/u/21031067?v=4',
+        gravatar_id: '',
+        url: 'https://api.github.com/users/Codertocat',
+        html_url: 'https://github.com/Codertocat',
+        followers_url: 'https://api.github.com/users/Codertocat/followers',
+        following_url:
+          'https://api.github.com/users/Codertocat/following{/other_user}',
+        gists_url: 'https://api.github.com/users/Codertocat/gists{/gist_id}',
+        starred_url:
+          'https://api.github.com/users/Codertocat/starred{/owner}{/repo}',
+        subscriptions_url:
+          'https://api.github.com/users/Codertocat/subscriptions',
+        organizations_url: 'https://api.github.com/users/Codertocat/orgs',
+        repos_url: 'https://api.github.com/users/Codertocat/repos',
+        events_url: 'https://api.github.com/users/Codertocat/events{/privacy}',
+        received_events_url:
+          'https://api.github.com/users/Codertocat/received_events',
+        type: 'User',
+        site_admin: false
+      }
+    ],
+    requested_reviewers: [
+      {
+        login: 'octocat',
+        id: 5346,
+        node_id: 'MDQ6VXNlcjIxMDMxMDY3',
+        avatar_url: 'http://alambic.github.com/avatars/u/5346?',
+        gravatar_id: '',
+        url: 'https://api.github.com/users/octocat',
+        html_url: 'http://github.com/octocat',
+        followers_url: 'https://api.github.com/users/octocat/followers',
+        following_url:
+          'https://api.github.com/users/octocat/following{/other_user}',
+        gists_url: 'https://api.github.com/users/octocat/gists{/gist_id}',
+        starred_url:
+          'https://api.github.com/users/octocat/starred{/owner}{/repo}',
+        subscriptions_url: 'https://api.github.com/users/octocat/subscriptions',
+        organizations_url: 'https://api.github.com/users/octocat/orgs',
+        repos_url: 'https://api.github.com/users/octocat/repos',
+        events_url: 'https://api.github.com/users/octocat/events{/privacy}',
+        received_events_url:
+          'https://api.github.com/users/octocat/received_events',
+        type: 'User',
+        site_admin: false
+      }
+    ],
     requested_teams: [],
-    labels: [],
+    labels: [
+      {
+        id: 1362934389,
+        node_id: 'MDU6TGFiZWwxMzYyOTM0Mzg5',
+        url: 'https://api.github.com/repos/Codertocat/Hello-World/labels/bug',
+        name: 'bug',
+        color: 'd73a4a',
+        default: true,
+        description: "Something isn't working"
+      }
+    ],
     milestone: null,
     commits_url:
       'https://api.github.com/repos/Codertocat/Hello-World/pulls/2/commits',
@@ -221,10 +279,10 @@ export const pr: PullRequestEvent = {
         open_issues: 2,
         watchers: 0,
         default_branch: 'master',
-        allow_squash_merge: true,
-        allow_merge_commit: true,
-        allow_rebase_merge: true,
-        delete_branch_on_merge: false
+        is_template: false,
+        topics: [],
+        visibility: 'public',
+        web_commit_signoff_required: false
       }
     },
     base: {
@@ -385,19 +443,17 @@ export const pr: PullRequestEvent = {
         open_issues: 2,
         watchers: 0,
         default_branch: 'master',
-        allow_squash_merge: true,
-        allow_merge_commit: true,
-        allow_rebase_merge: true,
-        delete_branch_on_merge: false
+        is_template: false,
+        topics: [],
+        visibility: 'public',
+        web_commit_signoff_required: false
       }
     },
     _links: {
       self: {
         href: 'https://api.github.com/repos/Codertocat/Hello-World/pulls/2'
       },
-      html: {
-        href: 'https://github.com/Codertocat/Hello-World/pull/2'
-      },
+      html: {href: 'https://github.com/Codertocat/Hello-World/pull/2'},
       issue: {
         href: 'https://api.github.com/repos/Codertocat/Hello-World/issues/2'
       },
@@ -423,6 +479,8 @@ export const pr: PullRequestEvent = {
       }
     },
     author_association: 'OWNER',
+    auto_merge: null,
+    active_lock_reason: null,
     draft: false,
     merged: false,
     mergeable: null,
@@ -563,7 +621,15 @@ export const pr: PullRequestEvent = {
     forks: 0,
     open_issues: 2,
     watchers: 0,
-    default_branch: 'master'
+    default_branch: 'master',
+    is_template: false,
+    topics: [],
+    visibility: 'public',
+    web_commit_signoff_required: false
+  },
+  installation: {
+    id: 1,
+    node_id: 'MDIzOkludGVncmF0aW9uSW5zdGFsbGF0aW9uMQ=='
   },
   sender: {
     login: 'Codertocat',
