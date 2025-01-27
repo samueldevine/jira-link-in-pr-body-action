@@ -19,8 +19,12 @@ async function run(): Promise<void> {
         'Invalid Pull Request: missing JIRA project in title or branch'
       )
     }
-  } catch (error) {
-    core.setFailed(error.message)
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      core.setFailed(error.message)
+    } else {
+      core.setFailed('An unknown error occurred.')
+    }
   }
 }
 
