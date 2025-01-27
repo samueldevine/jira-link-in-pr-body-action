@@ -1,0 +1,13 @@
+name: 'jira-link-in-pr-description-action'
+description: "ensures PRs can link to JIRA card"
+author: 'samueldevine'
+inputs:
+  project:
+    required: true
+    description: 'JIRA Project'
+  ignore-author:
+    required: false
+    description: "comma seperated list of authors to skip check for"
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
