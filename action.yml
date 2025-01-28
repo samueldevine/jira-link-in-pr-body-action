@@ -12,5 +12,5 @@ inputs:
     required: false
     description: "comma seperated list of authors to skip check for"
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'

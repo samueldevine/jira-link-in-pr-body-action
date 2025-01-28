@@ -41,6 +41,7 @@ export async function validate(
   core.debug(`author ${event.pull_request.user.login.toLowerCase()}`)
   core.debug(`title ${event.pull_request.title}`)
   core.debug(`head ${event.pull_request.head.ref}`)
+  core.debug(`body ${event.pull_request.body}`)
 
   for (const author of options.ignoreAuthor) {
     if (event.pull_request.user.login.toLowerCase() === author.toLowerCase()) {
@@ -50,10 +51,13 @@ export async function validate(
 
   const titleMatch = event.pull_request.title.match(re) || []
   const refMatch = event.pull_request.head.ref.match(re) || []
-  const matches = [...titleMatch, ...refMatch]
+  const bodyMatch = event.pull_request.body?.match(re) || []
+  const matches = [...titleMatch, ...refMatch, ...bodyMatch]
 
   if (matches.length < 1) {
-    core.error(`No Jira issue found for ${project} in PR title or branch`)
+    core.error(
+      `No Jira issue found for ${project} in PR title, branch, or description`
+    )
     return false
   }
 
