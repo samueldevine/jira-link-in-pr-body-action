@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: Check for JIRA ISSUE
         id: check
-        uses: samueldevine/jira-link-in-pr-body-action@v1.0.0
+        uses: samueldevine/jira-link-in-pr-body-action@v1.0.2
         with:
           ignore-author: dependabot[bot]
           project: "SRENEW"
