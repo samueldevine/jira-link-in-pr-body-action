@@ -1,5 +1,8 @@
 name: 'jira-link-in-pr-description-action'
 description: "ensures PRs can link to JIRA card"
+branding:
+  icon: 'check'
+  color: 'green'
 author: 'samueldevine'
 inputs:
   project:
