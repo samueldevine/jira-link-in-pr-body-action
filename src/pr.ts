@@ -38,12 +38,12 @@ export async function validate(
 
   // const jira = new JiraClientImpl(options.jira)
 
-  core.debug('author ' + event.pull_request.user.login.toLowerCase())
-  core.debug('title ' + event.pull_request.title)
-  core.debug('head ' + event.pull_request.head.ref)
+  core.debug(`author ${event.pull_request.user.login.toLowerCase()}`)
+  core.debug(`title ${event.pull_request.title}`)
+  core.debug(`head ${event.pull_request.head.ref}`)
 
   for (const author of options.ignoreAuthor) {
-    if (event.pull_request.user.login.toLowerCase() == author.toLowerCase()) {
+    if (event.pull_request.user.login.toLowerCase() === author.toLowerCase()) {
       return true
     }
   }
